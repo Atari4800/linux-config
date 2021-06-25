@@ -1,13 +1,34 @@
+" set no compatible with vi for more features
 set nocompatible
 
+" sets file type detection on
+filetype plugin indent on
+
+" call plugin loader
 call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'
+Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'https://github.com/tpope/vim-repeat'
 
 call plug#end()
 
+" enable matchit
+runtime macros/matchit.vim
+
+" sets the color scheme
 colorscheme twilight256
 
+" sets it so that you can switch buffers without saving 
+set hidden
+
+" sets line numbers on the left side
+set number
+
+" sets relative line numbering
+set relativenumber
+
+" sets encoding
 set encoding=utf-8
 
 " gives :MakeTags command that generates ctags file in current dir
@@ -40,8 +61,10 @@ set smartcase
 set incsearch
 set showmatch
 set hlsearch
+" sets two escapes to clear highlights
+nnoremap <esc><esc> :noh<cr><esc>
 
-" remaps % to TAB to that you can go from { ( [ to its match
+" remaps % to TAB to that you can go from { ( [ to its match with TAB
 nnoremap <tab> %
 vnoremap <tab> %
 
@@ -58,9 +81,17 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+"noremap h <NOP>
+"noremap j <NOP>
+"noremap k <NOP>
+"noremap l <NOP>
 
 " allows \u to toggle graphic of undo tree
 nnoremap <leader>u :GundoToggle<CR>
 
-" will highlight last entered text when entering visual mode
-nnoremap gV '[v']
+" sets undo file active
+set undofile
+
+" sets where to save undo files
+set undodir=~/.vim/undo_files
+
